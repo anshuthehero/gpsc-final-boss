@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPSC Final Boss - Personal Prep Matrix (Class 1/2)</title>
+  <style>
+    :root {
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --color-red: #ef4444;
+      --color-yellow: #f59e0b;
+      --color-green: #10b981;
+      --color-locked: #94a3b8;
+      --badge-bg: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #090d16;
+      --bg-surface: #111827;
+      --bg-subtle: #1f2937;
+      --border-color: #374151;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --color-red: #f87171;
+      --color-yellow: #fbbf24;
+      --color-green: #34d399;
+      --color-locked: #64748b;
+      --badge-bg: #374151;
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Layout */
+    #sidebar {
+      width: 250px;
+      background-color: var(--bg-surface);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand .tagline {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    nav {
+      padding: 1rem 0.75rem;
+      flex-grow: 1;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.65rem 0.85rem;
+      margin-bottom: 0.25rem;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-btn:hover {
+      background-color: var(--bg-subtle);
+      color: var(--text-main);
+    }
+
+    .nav-btn.active {
+      background-color: var(--bg-subtle);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .sidebar-footer {
+      padding: 1rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    #main-content {
+      flex-grow: 1;
+      overflow-y: auto;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.85rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .content-area {
+      padding: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      flex-grow: 1;
+    }
+
+    /* Buttons & Controls */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-surface);
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--bg-subtle);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-danger {
+      color: var(--color-red);
+      border-color: var(--color-red);
+    }
+
+    .btn-danger:hover {
+      background-color: rgba(239, 68, 68, 0.1);
+    }
+
+    .btn-sm {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    /* Cards */
+    .card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    /* Notice banner */
+    .notice-unverified {
+      background-color: rgba(245, 158, 11, 0.1);
+      border-left: 3px solid var(--color-yellow);
+      padding: 0.6rem 0.9rem;
+      font-size: 0.75rem;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Status indicators */
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .dot-red { background-color: var(--color-red); }
+    .dot-yellow { background-color: var(--color-yellow); }
+    .dot-green { background-color: var(--color-green); }
+    .dot-locked { background-color: var(--color-locked); }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .badge-red { background: rgba(239, 68, 68, 0.15); color: var(--color-red); }
+    .badge-yellow { background: rgba(245, 158, 11, 0.15); color: var(--color-yellow); }
+    .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--color-green); }
+    .badge-locked { background: rgba(148, 163, 184, 0.2); color: var(--color-locked); }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .data-table th, .data-table td {
+      padding: 0.65rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table th {
+      background-color: var(--bg-subtle);
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.45rem 0.65rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background-color: var(--bg-surface);
+      color: var(--text-main);
+      font-size: 0.82rem;
+    }
+
+    .form-control:focus {
+      outline: 2px solid var(--accent);
+      border-color: transparent;
+    }
+
+    /* Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 850px) {
+      body { flex-direction: column; }
+      #sidebar { width: 100%; height: auto; }
+      #main-content { height: auto; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .content-area { padding: 1rem; }
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    /* Progress bar */
+    .progress-bar-bg {
+      background-color: var(--bg-subtle);
+      border-radius: 999px;
+      height: 8px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div class="brand">
+      <h1>🎯 GPSC Final Boss</h1>
+      <div class="tagline">Deputy Collector Track (Class 1/2)</div>
+    </div>
+    <nav>
+      <button class="nav-btn active" onclick="switchTab('dashboard')">
+        <span>⚡ Study Now</span>
+        <span id="badge-top-p" class="badge badge-red">5</span>
+      </button>
+      <button class="nav-btn" onclick="switchTab('syllabus')">
+        <span>🌳 Syllabus Tree</span>
+      </button>
+      <button class="nav-btn" onclick="switchTab('revision')">
+        <span>🔄 Revision Tracker</span>
+        <span id="badge-due" class="badge badge-yellow">0</span>
+      </button>
+      <button class="nav-btn" onclick="switchTab('roadmap')">
+        <span>🗺️ 4-Phase Roadmap</span>
+      </button>
+      <button class="nav-btn" onclick="switchTab('pyqs')">
+        <span>📝 PYQ Intelligence</span>
+      </button>
+      <button class="nav-btn" onclick="switchTab('vault')">
+        <span>📚 Resource Vault</span>
+      </button>
+      <button class="nav-btn" onclick="switchTab('readiness')">
+        <span>📊 Readiness View</span>
+      </button>
+    </nav>
+    <div class="sidebar-footer">
+      <div>Data Status: Local (Private)</div>
+      <div style="margin-top: 4px; font-size: 0.7rem;">Verify syllabus & marks against GPSC rules.</div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <header>
+      <div style="font-weight: 600; font-size: 0.95rem;" id="page-title">Study Now (Adaptive Priority)</div>
+      <div class="header-actions">
+        <button class="btn btn-sm" onclick="exportData()" title="Backup state to JSON file">💾 Export JSON</button>
+        <button class="btn btn-sm" onclick="document.getElementById('importFile').click()" title="Restore from JSON">📂 Import</button>
+        <input type="file" id="importFile" style="display:none" onchange="importData(event)" accept=".json">
+        <button class="btn btn-sm" onclick="toggleDarkMode()" id="theme-btn">🌙 Dark</button>
+        <button class="btn btn-sm btn-danger" onclick="promptReset()" title="Reset to defaults">Reset</button>
+      </div>
+    </header>
+
+    <div class="content-area">
+      <!-- Unverified Disclaimer Banner -->
+      <div class="notice-unverified">
+        ⚠️ <strong>Notice:</strong> All marks, paper assignments, topic weightages (W), and study links are unverified placeholders. Adjust and verify each against the official GPSC notification and your PYQ analysis.
+      </div>
+
+      <!-- Tab: Dashboard / Study Now -->
+      <section id="tab-dashboard">
+        <div class="card">
+          <div class="card-title">Top 5 Priority Topics to Study Now</div>
+          <div class="card-desc">
+            Calculated via: <code>Priority P = W × (1 - M) × R × D</code><br>
+            Where: <strong>W</strong> = Weightage (1-5 unverified), <strong>M</strong> = Mastery (0-1), <strong>R</strong> = Engineer ROI factor (0.5-1.5), <strong>D</strong> = Decay <code>1 + days/14</code> (capped at 3.0).
+          </div>
+          <div id="priority-list"></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Quick Study Session Log</div>
+            <div class="card-desc">Log your latest session to update topic mastery and trigger spaced-repetition revision cycles.</div>
+            <form id="quick-log-form" onsubmit="handleSessionSubmit(event)">
+              <div class="form-group">
+                <label for="log-topic">Select Topic</label>
+                <select id="log-topic" class="form-control" required></select>
+              </div>
+              <div class="form-group">
+                <label for="log-self">Self-Assessment Mastery (0% to 100%)</label>
+                <input type="number" id="log-self" class="form-control" min="0" max="100" placeholder="e.g. 60" required>
+              </div>
+              <div class="form-group">
+                <label>Optional Diagnostic Quiz Score (Weights: 70% Quiz, 30% Self-Assessment)</label>
+                <div style="display: flex; gap: 0.5rem;">
+                  <input type="number" id="log-correct" class="form-control" min="0" placeholder="Correct (e.g. 7)">
+                  <input type="number" id="log-total" class="form-control" min="1" placeholder="Total (e.g. 10)">
+                </div>
+                <small style="color: var(--text-muted); font-size: 0.72rem;">Leave blank if you didn't take a quiz this session.</small>
+              </div>
+              <div class="form-group">
+                <label for="log-notes">Session Reflection Notes</label>
+                <input type="text" id="log-notes" class="form-control" placeholder="What key concept or article did you tackle?">
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Record Session & Recalculate</button>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Study Phase Status</div>
+            <div class="card-desc">Current position in the 4-Phase Engineer's Blueprint.</div>
+            <div id="phase-summary-card"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab: Syllabus Tree -->
+      <section id="tab-syllabus" style="display: none;">
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <div class="card-title">GPSC Class 1/2 Syllabus Tree</div>
+              <div class="card-desc">Color key: <span class="dot dot-red"></span> Red (&lt;0.4), <span class="dot dot-yellow"></span> Yellow (0.4-0.7), <span class="dot dot-green"></span> Green (&gt;0.7), <span class="dot dot-locked"></span> Grey (Locked until prerequisites reach Yellow).</div>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-primary" onclick="openAddTopicModal()">+ Add Custom Topic</button>
+            </div>
+          </div>
+          <div id="syllabus-tree-view"></div>
+        </div>
+      </section>
+
+      <!-- Tab: Revision Tracker -->
+      <section id="tab-revision" style="display: none;">
+        <div class="card">
+          <div class="card-title">Spaced Repetition Revision Schedule</div>
+          <div class="card-desc">Review intervals scheduled at 1, 3, 7, 14, and 30 days after your study sessions to conquer the forgetting curve.</div>
+          <div id="revision-schedule-view"></div>
+        </div>
+      </section>
+
+      <!-- Tab: Roadmap -->
+      <section id="tab-roadmap" style="display: none;">
+        <div class="card">
+          <div class="card-title">Four-Phase Preparation Roadmap</div>
+          <div class="card-desc">Engineered sequence designed to maximize return for candidates transitioning from corporate engineering.</div>
+          <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+            <label style="font-weight: 500; font-size: 0.85rem;">Preparation Start Date:</label>
+            <input type="date" id="start-date-input" class="form-control" style="width: auto;" onchange="updateStartDate(this.value)">
+            <span id="elapsed-weeks" style="font-size: 0.8rem; color: var(--text-muted);"></span>
+          </div>
+          <div id="roadmap-timeline"></div>
+        </div>
+      </section>
+
+      <!-- Tab: PYQs -->
+      <section id="tab-pyqs" style="display: none;">
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div>
+              <div class="card-title">Previous Year Question (PYQ) Tagging & Weightage Calculator</div>
+              <div class="card-desc">Tag past exam questions to topics. The system automatically recalculates exam weightage <strong>W</strong> based on question frequency.</div>
+            </div>
+            <button class="btn btn-sm btn-primary" onclick="openAddPyqModal()">+ Tag New PYQ</button>
+          </div>
+          <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+            <button class="btn btn-sm" onclick="recomputeWeightsFromPyqs()">⚡ Recompute All Topic Weights (W) from PYQ Counts</button>
+            <span id="pyq-count-status" style="font-size: 0.78rem; color: var(--text-muted);"></span>
+          </div>
+          <div id="pyq-table-container"></div>
+        </div>
+      </section>
+
+      <!-- Tab: Resource Vault -->
+      <section id="tab-vault" style="display: none;">
+        <div class="card">
+          <div class="card-title">Single Source of Truth (SSOT) Resource Vault</div>
+          <div class="card-desc">Strictly one primary resource per topic to eliminate material hoarding and analysis paralysis. All links and recommendations are editable placeholders (unverified).</div>
+          <div id="vault-table-container"></div>
+        </div>
+      </section>
+
+      <!-- Tab: Readiness View -->
+      <section id="tab-readiness" style="display: none;">
+        <div class="card">
+          <div class="card-title">Subject Readiness Matrix</div>
+          <div class="card-desc">Average mastery per subject across the GPSC Class 1/2 syllabus. Aim for &gt;70% across all subjects before test simulation.</div>
+          <div id="readiness-bars-container"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Modal: Edit / Add Topic -->
+  <div class="modal-backdrop" id="topic-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="topic-modal-title" style="font-size: 1rem;">Topic Details</h3>
+        <button class="btn btn-sm" onclick="closeModal('topic-modal')">✕</button>
+      </div>
+      <form id="topic-form" onsubmit="saveTopicModal(event)">
+        <input type="hidden" id="modal-topic-id">
+        <div class="form-group">
+          <label>Subject</label>
+          <select id="modal-topic-subject" class="form-control" required></select>
+        </div>
+        <div class="form-group">
+          <label>Topic Name</label>
+          <input type="text" id="modal-topic-name" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Exam Paper Assignment (unverified - verify against latest GPSC notification)</label>
+          <input type="text" id="modal-topic-paper" class="form-control" required>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Exam Weightage W (1.0 to 5.0) (unverified)</label>
+            <input type="number" id="modal-topic-w" class="form-control" min="1" max="5" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label>Engineer ROI Factor R (0.5 to 1.5)</label>
+            <input type="number" id="modal-topic-r" class="form-control" min="0.5" max="1.5" step="0.1" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prerequisite Topic (Optional - locks topic until prerequisite M &ge; 0.4)</label>
+          <select id="modal-topic-prereq" class="form-control">
+            <option value="">None (Available immediately)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <textarea id="modal-topic-notes" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" onclick="closeModal('topic-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Topic</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Tag PYQ -->
+  <div class="modal-backdrop" id="pyq-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size: 1rem;">Tag Previous Year Question (PYQ)</h3>
+        <button class="btn btn-sm" onclick="closeModal('pyq-modal')">✕</button>
+      </div>
+      <form id="pyq-form" onsubmit="savePyqModal(event)">
+        <div class="form-group">
+          <label>Exam Year (e.g. 2021, 2022, 2023)</label>
+          <input type="number" id="pyq-year" class="form-control" min="2010" max="2030" required>
+        </div>
+        <div class="form-group">
+          <label>Mapped Topic</label>
+          <select id="pyq-topic-select" class="form-control" required></select>
+        </div>
+        <div class="form-group">
+          <label>Question Reference / Prompt Summary</label>
+          <textarea id="pyq-question" class="form-control" rows="3" placeholder="Summary of question asked in GPSC Class 1/2..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Exam Stage</label>
+          <select id="pyq-stage" class="form-control">
+            <option value="Prelims">Prelims (Objective MCQ)</option>
+            <option value="Mains">Mains (Descriptive Answer)</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" onclick="closeModal('pyq-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save & Link PYQ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Vault Resource -->
+  <div class="modal-backdrop" id="vault-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size: 1rem;">Edit Single Source of Truth Resource</h3>
+        <button class="btn btn-sm" onclick="closeModal('vault-modal')">✕</button>
+      </div>
+      <form id="vault-form" onsubmit="saveVaultModal(event)">
+        <input type="hidden" id="vault-topic-id">
+        <div class="form-group">
+          <label id="vault-topic-title" style="font-weight: 600;"></label>
+        </div>
+        <div class="form-group">
+          <label>Primary Resource Title (unverified - verify against latest GPSC notification)</label>
+          <input type="text" id="vault-resource-name" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Resource Link / Reference Path</label>
+          <input type="text" id="vault-link" class="form-control" placeholder="https:// or Book chapter reference">
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select id="vault-status" class="form-control">
+            <option value="not started">Not Started</option>
+            <option value="reading">Reading / In-Progress</option>
+            <option value="done">Done / Completed</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" onclick="closeModal('vault-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Resource</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    /* GPSC Final Boss - Core Engine & Persistence */
+    const STORAGE_KEY = "gpsc_final_boss_v1_store";
+
+    const DEFAULT_SUBJECTS = [
+      { id: "polity", name: "Indian Polity & Constitution", defaultPaper: "Prelims GS-1 / Mains GS-2 (unverified)" },
+      { id: "guj_hist", name: "Gujarat History", defaultPaper: "Prelims GS-1 / Mains GS-1 (unverified)" },
+      { id: "guj_cult", name: "Gujarat Culture & Heritage", defaultPaper: "Prelims GS-1 / Mains GS-1 (unverified)" },
+      { id: "economy", name: "Economy (India & Gujarat)", defaultPaper: "Prelims GS-2 / Mains GS-3 (unverified)" },
+      { id: "geography", name: "Geography (India & Gujarat)", defaultPaper: "Prelims GS-2 / Mains GS-1 (unverified)" },
+      { id: "snt", name: "Science & Technology", defaultPaper: "Prelims GS-2 / Mains GS-3 (unverified)" },
+      { id: "aptitude", name: "Aptitude & Logical Reasoning", defaultPaper: "Prelims GS-1 (unverified)" },
+      { id: "guj_lang", name: "Gujarati Language & Vyakaran", defaultPaper: "Mains Paper-1 (unverified)" },
+      { id: "eng_lang", name: "English Language & Grammar", defaultPaper: "Mains Paper-2 (unverified)" },
+      { id: "ethics_pubad", name: "Ethics & Public Administration", defaultPaper: "Mains GS-2 (unverified)" }
+    ];
+
+    const DEFAULT_TOPICS = [
+      // Polity
+      { id: "t_pol_1", subjectId: "polity", name: "Preamble & Fundamental Rights", paper: "Prelims GS-1 / Mains GS-2 (unverified)", W: 4.5, R: 1.2, M: 0.1, lastRevised: null, notes: "Articles 12-35, landmark Supreme Court judgments", prereqId: null, resource: { name: "Indian Polity by M. Laxmikanth (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+      { id: "t_pol_2", subjectId: "polity", name: "Directive Principles & Fundamental Duties", paper: "Prelims GS-1 / Mains GS-2 (unverified)", W: 4.0, R: 1.1, M: 0.0, lastRevised: null, notes: "Articles 36-51A, Gandhian & socialist principles", prereqId: "t_pol_1", resource: { name: "Indian Polity by M. Laxmikanth (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+      { id: "t_pol_3", subjectId: "polity", name: "Panchayati Raj & 73rd/74th Amendments in Gujarat", paper: "Prelims GS-1 / Mains GS-2 (unverified)", W: 4.8, R: 1.3, M: 0.0, lastRevised: null, notes: "Gujarat Panchayats Act 1993, 3-tier structure", prereqId: "t_pol_1", resource: { name: "Granth Nirman Board - Gujarat Panchayati Raj (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+      
+      // Gujarat History
+      { id: "t_ghist_1", subjectId: "guj_hist", name: "Solanki Era (Golden Era of Gujarat)", paper: "Prelims GS-1 / Mains GS-1 (unverified)", W: 4.7, R: 0.8, M: 0.0, lastRevised: null, notes: "Siddhraj Jaisinh, Kumarapala, architecture of Patan", prereqId: null, resource: { name: "Gujarat No Rajkiya Ane Sanskritik Itihas - Granth Nirman Board (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+      { id: "t_ghist_2", subjectId: "guj_hist", name: "Maitraka & Chavda Dynasties of Vallabhi", paper: "Prelims GS-1 / Mains GS-1 (unverified)", W: 3.8, R: 0.8, M: 0.0, lastRevised: null, notes: "Bhatarka, Buddhist university, Xuanzang's visit", prereqId: null, resource: { name: "Gujarat No Itihas (Granth Nirman Board) (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+      { id: "t_ghist_3", subjectId: "guj_hist", name: "Maha Gujarat Movement & Freedom Struggle in Gujarat", paper: "Prelims GS-1 / Mains GS-1 (unverified)", W: 4.5, R: 0.9, M: 0.0, lastRevised: null, notes: "Indulal Yagnik, Bardoli, Dandi March, Kheda Satyagraha", prereqId: null, resource: { name: "Gujarat No Swatantrya Sangram - Granth Nirman (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+
+      // Gujarat Culture
+      { id: "t_gcult_1", subjectId: "guj_cult", name: "Fairs, Festivals & Folk Dances of Gujarat", paper: "Prelims GS-1 / Mains GS-1 (unverified)", W: 4.2, R: 0.7, M: 0.0, lastRevised: null, notes: "Tarnetar, Vautha, Bhavnath, Garba, Raas, Tippani", prereqId: null, resource: { name: "Gujarat Ni Asmita - Hasit Buch (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+      { id: "t_gcult_2", subjectId: "guj_cult", name: "Gujarat Temple Architecture & Stepwells (Vavs)", paper: "Prelims GS-1 / Mains GS-1 (unverified)", W: 4.6, R: 0.9, M: 0.0, lastRevised: null, notes: "Modhera Sun Temple, Rani ki Vav, Adalaj", prereqId: null, resource: { name: "Sanskritik Varso - Joravarsinh Jadav (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+
+      // Economy
+      { id: "t_econ_1", subjectId: "economy", name: "Indian Fiscal & Monetary Policy Basics", paper: "Prelims GS-2 / Mains GS-3 (unverified)", W: 4.2, R: 1.3, M: 0.2, lastRevised: null, notes: "RBI tools, repo, reverse repo, inflation types", prereqId: null, resource: { name: "Mrunal Patel PCB Lectures / NCERT Class 12 Macro (unverified)", link: "https://mrunal.org", status: "not started" } },
+      { id: "t_econ_2", subjectId: "economy", name: "Gujarat State Budget & Socio-Economic Review", paper: "Prelims GS-2 / Mains GS-3 (unverified)", W: 4.8, R: 1.1, M: 0.0, lastRevised: null, notes: "Latest budget schemes, GSDP growth, sectoral shares", prereqId: "t_econ_1", resource: { name: "Gujarat Directorate of Economics & Statistics (unverified)", link: "https://financedepartment.gujarat.gov.in", status: "not started" } },
+
+      // Geography
+      { id: "t_geo_1", subjectId: "geography", name: "Physical Geography of Gujarat (Relief, Rivers, Coasts)", paper: "Prelims GS-2 / Mains GS-1 (unverified)", W: 4.5, R: 1.0, M: 0.1, lastRevised: null, notes: "Narmada, Tapi, Sabarmati basins, Rann of Kutch, coastline", prereqId: null, resource: { name: "Gujarat Ni Bhugol - Dr. Manju Sharma (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+
+      // S&T
+      { id: "t_snt_1", subjectId: "snt", name: "Space Tech & ISRO Missions (Engineer Advantage)", paper: "Prelims GS-2 / Mains GS-3 (unverified)", W: 4.0, R: 1.5, M: 0.3, lastRevised: null, notes: "PSLV, LVM3, Gaganyaan, Chandrayaan, NISAR", prereqId: null, resource: { name: "ISRO Official Portal & S&T Compendiums (unverified)", link: "https://www.isro.gov.in", status: "not started" } },
+
+      // Aptitude
+      { id: "t_apt_1", subjectId: "aptitude", name: "Data Interpretation & Analytical Reasoning", paper: "Prelims GS-1 (unverified)", W: 4.6, R: 1.5, M: 0.5, lastRevised: null, notes: "Charts, syllogisms, sequence, speed tests", prereqId: null, resource: { name: "Quantitative Aptitude - R.S. Aggarwal (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+
+      // Gujarati Language (Mains)
+      { id: "t_glang_1", subjectId: "guj_lang", name: "Gujarati Vyakaran (Samanarthi, Virudharthi, Jodni)", paper: "Mains Paper-1 (unverified)", W: 4.9, R: 0.6, M: 0.0, lastRevised: null, notes: "Grammar rules, sandhi, chhand, alankar", prereqId: null, resource: { name: "Vyavaharik Gujarati Vyakaran - Granth Nirman Board (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+      { id: "t_glang_2", subjectId: "guj_lang", name: "Gujarati Essay & Report Writing (Ahewal Lekhan)", paper: "Mains Paper-1 (unverified)", W: 4.8, R: 0.7, M: 0.0, lastRevised: null, notes: "Format of Patra Lekhan, Charcha Patra, Ahewal", prereqId: "t_glang_1", resource: { name: "Bhasha Saundarya (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+
+      // English Language (Mains)
+      { id: "t_elang_1", subjectId: "eng_lang", name: "English Grammar, Précis & Comprehension", paper: "Mains Paper-2 (unverified)", W: 4.2, R: 1.4, M: 0.4, lastRevised: null, notes: "Tenses, voice, formal letter drafting, précis rules", prereqId: null, resource: { name: "High School English Grammar - Wren & Martin (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } },
+
+      // Ethics & Pub Ad
+      { id: "t_eth_1", subjectId: "ethics_pubad", name: "Administrative Ethics & Case Studies for Deputy Collector", paper: "Mains GS-2 (unverified)", W: 4.9, R: 1.1, M: 0.0, lastRevised: null, notes: "Integrity, public interest vs pressure, crisis handling", prereqId: null, resource: { name: "Ethics, Integrity & Aptitude - Lexicon / Subba Rao (unverified)", link: "https://gpsc.gujarat.gov.in", status: "not started" } }
+    ];
+
+    const DEFAULT_PYQS = [
+      { id: "pyq_1", year: 2023, topicId: "t_pol_3", question: "Explain the decentralization of powers under the Gujarat Panchayats Act 1993 with reference to Gram Sabha.", stage: "Mains" },
+      { id: "pyq_2", year: 2022, topicId: "t_ghist_1", question: "Evaluate the cultural and architectural contributions of the Solanki rulers in Patan and Modhera.", stage: "Mains" },
+      { id: "pyq_3", year: 2023, topicId: "t_gcult_2", question: "Discuss the structural and hydraulic architecture of Rani ki Vav in Patan.", stage: "Prelims" },
+      { id: "pyq_4", year: 2021, topicId: "t_eth_1", question: "A local leader pressurizes a Deputy Collector to alter land acquisition records. How should the officer resolve this ethical dilemma?", stage: "Mains" },
+      { id: "pyq_5", year: 2023, topicId: "t_econ_2", question: "Analyze the major thrust sectors identified in the latest Gujarat Industrial Policy.", stage: "Mains" }
+    ];
+
+    let appState = {
+      darkMode: false,
+      startDate: new Date().toISOString().split("T")[0],
+      subjects: DEFAULT_SUBJECTS,
+      topics: DEFAULT_TOPICS,
+      pyqs: DEFAULT_PYQS,
+      studyLogs: []
+    };
+
+    // Persistence Layer with try/catch
+    function loadState() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          appState = { ...appState, ...parsed };
+        }
+      } catch (err) {
+        console.error("Failed to load local storage state:", err);
+      }
+      applyTheme();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (err) {
+        console.error("Failed to save state to localStorage:", err);
+        alert("Warning: Local storage full or unavailable.");
+      }
+    }
+
+    function toggleDarkMode() {
+      appState.darkMode = !appState.darkMode;
+      applyTheme();
+      saveState();
+    }
+
+    function applyTheme() {
+      if (appState.darkMode) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        document.getElementById("theme-btn").innerText = "☀️ Light";
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+        document.getElementById("theme-btn").innerText = "🌙 Dark";
+      }
+    }
+
+    function exportData() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `gpsc_final_boss_backup_${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function importData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (imported.topics && imported.subjects) {
+            appState = imported;
+            saveState();
+            applyTheme();
+            renderAllViews();
+            alert("State restored successfully!");
+          } else {
+            alert("Invalid backup file structure.");
+          }
+        } catch (err) {
+          alert("Error parsing backup JSON file.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function promptReset() {
+      if (confirm("Reset all progress back to factory defaults? This will erase all logs and customizations.")) {
+        localStorage.removeItem(STORAGE_KEY);
+        appState = {
+          darkMode: false,
+          startDate: new Date().toISOString().split("T")[0],
+          subjects: DEFAULT_SUBJECTS,
+          topics: DEFAULT_TOPICS,
+          pyqs: DEFAULT_PYQS,
+          studyLogs: []
+        };
+        saveState();
+        applyTheme();
+        renderAllViews();
+      }
+    }
+
+    // Mathematical Engine & Helpers
+    function getDaysSince(dateString) {
+      if (!dateString) return 28; // Default to 28 days decay if never studied
+      const now = new Date();
+      const past = new Date(dateString);
+      const diffMs = now - past;
+      return Math.max(0, Math.floor(diffMs / (1000 * 60 * 60 * 24)));
+    }
+
+    function computeDecay(days) {
+      // D = 1 + days/14, capped at 3.0
+      return Math.min(3.0, 1 + (days / 14));
+    }
+
+    function isTopicLocked(topic) {
+      if (!topic.prereqId) return false;
+      const prereq = appState.topics.find(t => t.id === topic.prereqId);
+      if (!prereq) return false;
+      // Locked until prereq M >= 0.4
+      return prereq.M < 0.4;
+    }
+
+    function getTopicStatus(topic) {
+      if (isTopicLocked(topic)) return { label: "Locked", colorClass: "badge-locked", dotClass: "dot-locked" };
+      if (topic.M < 0.4) return { label: "Red (<0.4)", colorClass: "badge-red", dotClass: "dot-red" };
+      if (topic.M <= 0.7) return { label: "Yellow (0.4-0.7)", colorClass: "badge-yellow", dotClass: "dot-yellow" };
+      return { label: "Green (>0.7)", colorClass: "badge-green", dotClass: "dot-green" };
+    }
+
+    function calculatePriority(topic) {
+      const days = getDaysSince(topic.lastRevised);
+      const D = computeDecay(days);
+      const P = topic.W * (1 - topic.M) * topic.R * D;
+      return { P, D, days };
+    }
+
+    // Tab Navigation
+    function switchTab(tabId) {
+      const tabs = ["dashboard", "syllabus", "revision", "roadmap", "pyqs", "vault", "readiness"];
+      tabs.forEach(t => {
+        const el = document.getElementById(`tab-${t}`);
+        if (el) el.style.display = (t === tabId) ? "block" : "none";
+      });
+
+      const navButtons = document.querySelectorAll(".nav-btn");
+      navButtons.forEach(btn => btn.classList.remove("active"));
+      event?.currentTarget?.classList?.add("active");
+
+      const titles = {
+        dashboard: "Study Now (Adaptive Priority)",
+        syllabus: "GPSC Class 1/2 Syllabus Tree",
+        revision: "Spaced Repetition Revision Tracker",
+        roadmap: "Four-Phase Engineer's Preparation Roadmap",
+        pyqs: "Previous Year Questions & Weightage Engine",
+        vault: "Resource Vault (Single Source of Truth)",
+        readiness: "Subject Readiness View"
+      };
+      document.getElementById("page-title").innerText = titles[tabId] || "GPSC Final Boss";
+
+      renderAllViews();
+    }
+
+    // View Renderers
+    function renderStudyNow() {
+      const priorityContainer = document.getElementById("priority-list");
+      const topicSelect = document.getElementById("log-topic");
+
+      // Populate topic select
+      topicSelect.innerHTML = appState.topics.map(t => `<option value="${t.id}">${t.name} (${t.paper})</option>`).join("");
+
+      // Calculate priority for all unlocked topics
+      const ranked = appState.topics
+        .filter(t => !isTopicLocked(t))
+        .map(t => {
+          const calc = calculatePriority(t);
+          return { topic: t, ...calc };
+        })
+        .sort((a, b) => b.P - a.P);
+
+      const top5 = ranked.slice(0, 5);
+      document.getElementById("badge-top-p").innerText = top5.length;
+
+      if (top5.length === 0) {
+        priorityContainer.innerHTML = "<p style='color: var(--text-muted);'>No unlocked topics available.</p>";
+        return;
+      }
+
+      let html = `<table class="data-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Topic & Paper</th>
+            <th>Mastery (M)</th>
+            <th>Decay (D)</th>
+            <th>Priority (P)</th>
+            <th>Engine Explanation</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+      top5.forEach((item, index) => {
+        const t = item.topic;
+        const status = getTopicStatus(t);
+        const reason = `High weightage W=${t.W.toFixed(1)} (unverified), Mastery ${(t.M * 100).toFixed(0)}%, Engineer ROI R=${t.R.toFixed(1)}, ${item.days >= 28 ? 'never/long overdue' : 'last revised ' + item.days + 'd ago'} (D=${item.D.toFixed(2)})`;
+
+        html += `
+          <tr>
+            <td style="font-weight: 700;">#${index + 1}</td>
+            <td>
+              <strong>${t.name}</strong><br>
+              <span style="font-size: 0.72rem; color: var(--text-muted);">${t.paper}</span>
+            </td>
+            <td><span class="badge ${status.colorClass}">${(t.M * 100).toFixed(0)}%</span></td>
+            <td>${item.D.toFixed(2)}</td>
+            <td style="font-weight: 700; color: var(--accent);">${item.P.toFixed(2)}</td>
+            <td style="font-size: 0.75rem; color: var(--text-muted); max-width: 280px;">${reason}</td>
+            <td>
+              <button class="btn btn-sm btn-primary" onclick="quickLogTopic('${t.id}')">Log Study</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += `</tbody></table>`;
+      priorityContainer.innerHTML = html;
+
+      renderPhaseSummary();
+    }
+
+    function renderPhaseSummary() {
+      const summaryCard = document.getElementById("phase-summary-card");
+      const startDate = new Date(appState.startDate);
+      const now = new Date();
+      const diffWeeks = Math.max(0, Math.floor((now - startDate) / (1000 * 60 * 60 * 24 * 7)));
+
+      let phaseName = "";
+      let phaseTarget = "";
+      let phaseWeeks = "";
+      let progressPct = 0;
+
+      if (diffWeeks <= 6) {
+        phaseName = "Phase 1: Foundation";
+        phaseTarget = "GCERT/NCERT basics, Laxmikanth Polity core, and Gujarat Geography mapping.";
+        phaseWeeks = "Weeks 1–6";
+        progressPct = Math.min(100, Math.round((diffWeeks / 6) * 100));
+      } else if (diffWeeks <= 16) {
+        phaseName = "Phase 2: Core Mastery";
+        phaseTarget = "Granth Nirman Board Gujarat History, Art & Culture, Economy & Current Affairs.";
+        phaseWeeks = "Weeks 7–16";
+        progressPct = Math.min(100, Math.round(((diffWeeks - 6) / 10) * 100));
+      } else if (diffWeeks <= 24) {
+        phaseName = "Phase 3: Mains Transition";
+        phaseTarget = "Daily descriptive answer writing, Gujarati & English language grammar, Ethics case studies.";
+        phaseWeeks = "Weeks 17–24";
+        progressPct = Math.min(100, Math.round(((diffWeeks - 16) / 8) * 100));
+      } else {
+        phaseName = "Phase 4: Simulation & Final Boss";
+        phaseTarget = "Full-length timed mocks, simulated exam pressure, interview prep for Deputy Collector.";
+        phaseWeeks = "Weeks 25+";
+        progressPct = 100;
+      }
+
+      summaryCard.innerHTML = `
+        <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem;">${phaseName}</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Timeline: ${phaseWeeks} (Elapsed: Week ${diffWeeks + 1})</div>
+        <div class="progress-bar-bg" style="margin-bottom: 0.75rem;">
+          <div class="progress-bar-fill" style="width: ${progressPct}%; background-color: var(--accent);"></div>
+        </div>
+        <div style="font-size: 0.8rem; background: var(--bg-subtle); padding: 0.65rem; border-radius: 6px;">
+          <strong>Immediate Milestone:</strong> ${phaseTarget}
+        </div>
+      `;
+    }
+
+    function renderSyllabusTree() {
+      const container = document.getElementById("syllabus-tree-view");
+      let html = "";
+
+      appState.subjects.forEach(subject => {
+        const topics = appState.topics.filter(t => t.subjectId === subject.id);
+        const avgM = topics.length > 0 ? (topics.reduce((acc, t) => acc + t.M, 0) / topics.length) : 0;
+
+        html += `
+          <div style="border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 1rem; overflow: hidden;">
+            <div style="background-color: var(--bg-subtle); padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong style="font-size: 0.9rem;">${subject.name}</strong>
+                <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: 0.5rem;">(${subject.defaultPaper})</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Avg Mastery:</span>
+                <span class="badge ${avgM < 0.4 ? 'badge-red' : (avgM <= 0.7 ? 'badge-yellow' : 'badge-green')}">${(avgM * 100).toFixed(0)}%</span>
+              </div>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Topic</th>
+                  <th>Paper (unverified)</th>
+                  <th>W (1-5)</th>
+                  <th>ROI (R)</th>
+                  <th>Mastery (M)</th>
+                  <th>Last Revised</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        topics.forEach(t => {
+          const status = getTopicStatus(t);
+          const prereqObj = t.prereqId ? appState.topics.find(p => p.id === t.prereqId) : null;
+
+          html += `
+            <tr>
+              <td>
+                <span class="dot ${status.dotClass}"></span>
+                <strong>${t.name}</strong>
+                ${prereqObj ? `<br><small style="color: var(--text-muted); font-size: 0.7rem;">Needs: ${prereqObj.name} &ge; 40%</small>` : ''}
+              </td>
+              <td style="font-size: 0.75rem; color: var(--text-muted);">${t.paper}</td>
+              <td>${t.W.toFixed(1)}</td>
+              <td>${t.R.toFixed(1)}</td>
+              <td><strong>${(t.M * 100).toFixed(0)}%</strong></td>
+              <td>${t.lastRevised ? t.lastRevised : 'Never'}</td>
+              <td><span class="badge ${status.colorClass}">${status.label}</span></td>
+              <td>
+                <button class="btn btn-sm" onclick="editTopic('${t.id}')">Edit</button>
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table></div>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function renderRevisionSchedule() {
+      const container = document.getElementById("revision-schedule-view");
+      const intervals = [1, 3, 7, 14, 30];
+      const now = new Date();
+
+      let html = `<table class="data-table">
+        <thead>
+          <tr>
+            <th>Topic</th>
+            <th>Last Revised</th>
+            <th>Days Ago</th>
+            <th>Scheduled Milestone</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+      let dueCount = 0;
+
+      appState.topics.forEach(topic => {
+        if (!topic.lastRevised) return;
+        const days = getDaysSince(topic.lastRevised);
+
+        // Find nearest due interval
+        intervals.forEach(interval => {
+          const isOverdue = days >= interval;
+          const isUpcoming = days === interval - 1;
+
+          if (isOverdue && days <= interval + 2) {
+            dueCount++;
+            html += `
+              <tr>
+                <td><strong>${topic.name}</strong></td>
+                <td>${topic.lastRevised}</td>
+                <td>${days} days</td>
+                <td>${interval}-Day Revision Cycle</td>
+                <td><span class="badge badge-yellow">⚠️ Due Now</span></td>
+                <td><button class="btn btn-sm btn-primary" onclick="quickLogTopic('${topic.id}')">Complete Review</button></td>
+              </tr>
+            `;
+          }
+        });
+      });
+
+      if (dueCount === 0) {
+        html += `<tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">All revision cycles are up to date! Log study sessions to populate dynamic revision dates.</td></tr>`;
+      }
+
+      html += `</tbody></table>`;
+      container.innerHTML = html;
+      document.getElementById("badge-due").innerText = dueCount;
+    }
+
+    function renderRoadmap() {
+      const container = document.getElementById("roadmap-timeline");
+      document.getElementById("start-date-input").value = appState.startDate;
+
+      const startDate = new Date(appState.startDate);
+      const now = new Date();
+      const diffWeeks = Math.max(0, Math.floor((now - startDate) / (1000 * 60 * 60 * 24 * 7)));
+      document.getElementById("elapsed-weeks").innerText = `(${diffWeeks} weeks elapsed)`;
+
+      const phases = [
+        {
+          id: 1,
+          name: "Phase 1: Foundation (Weeks 1–6)",
+          active: diffWeeks <= 6,
+          desc: "Target: Build fundamental baseline in GCERT/NCERT (History, Science, Geography) and Laxmikanth Indian Polity. For an engineer, focus on converting unfamiliar humanities terminology into mental models.",
+          deliverables: ["GCERT 6-10 Indian & Gujarat overview", "Indian Polity Fundamental Rights & DPSP (Laxmikanth)", "Gujarat Physical Geography & Districts"]
+        },
+        {
+          id: 2,
+          name: "Phase 2: Core Mastery (Weeks 7–16)",
+          active: diffWeeks > 6 && diffWeeks <= 16,
+          desc: "Target: Deep dive into Gujarat-specific high-weightage subjects. Master Gujarat History (Solanki, Maitraka), Cultural Heritage, State Budget, and General Mental Ability.",
+          deliverables: ["Granth Nirman Board Gujarat History", "Gujarat Fairs, Architecture & Literature", "Gujarat Economic Survey & Current Schemes"]
+        },
+        {
+          id: 3,
+          name: "Phase 3: Mains Transition (Weeks 17–24)",
+          active: diffWeeks > 16 && diffWeeks <= 24,
+          desc: "Target: Transition from objective MCQs to 900-mark descriptive Mains papers. Focus on Gujarati Bhasha Vyakaran & formatting, English précis, and GS-2 Public Administration/Ethics case studies.",
+          deliverables: ["Daily 2 Mains answers with timer", "Gujarati Essay & Ahewal Lekhan formats", "Ethics dilemma resolution for Deputy Collector role"]
+        },
+        {
+          id: 4,
+          name: "Phase 4: Simulation & Interview (Weeks 25+)",
+          active: diffWeeks > 24,
+          desc: "Target: Full mock exam simulation under strict 3-hour exam conditions. Analyze weak points, eliminate negative marking traps, and practice mock interviews.",
+          deliverables: ["Full Prelims Paper 1 & 2 simulations", "Full 6-Paper Mains test series", "Gujarat Administrative Service viva voce practice"]
+        }
+      ];
+
+      let html = "";
+      phases.forEach(p => {
+        html += `
+          <div style="border-left: 3px solid ${p.active ? 'var(--accent)' : 'var(--border-color)'}; padding-left: 1.25rem; margin-bottom: 1.75rem; position: relative;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+              <strong style="font-size: 0.95rem; color: ${p.active ? 'var(--accent)' : 'var(--text-main)'};">${p.name}</strong>
+              ${p.active ? '<span class="badge badge-green">Active Phase</span>' : ''}
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.5rem;">${p.desc}</p>
+            <ul style="font-size: 0.78rem; padding-left: 1.25rem; color: var(--text-main);">
+              ${p.deliverables.map(d => `<li style="margin-bottom: 0.2rem;">${d}</li>`).join("")}
+            </ul>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function renderPyqs() {
+      const container = document.getElementById("pyq-table-container");
+      document.getElementById("pyq-count-status").innerText = `Total PYQs tagged: ${appState.pyqs.length}`;
+
+      if (appState.pyqs.length === 0) {
+        container.innerHTML = "<p style='color: var(--text-muted);'>No PYQs tagged yet. Tag past questions to automatically recompute topic weightages.</p>";
+        return;
+      }
+
+      let html = `<table class="data-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Stage</th>
+            <th>Mapped Topic</th>
+            <th>Question Prompt</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+      appState.pyqs.forEach(q => {
+        const topic = appState.topics.find(t => t.id === q.topicId);
+        html += `
+          <tr>
+            <td><strong>${q.year}</strong></td>
+            <td><span class="badge ${q.stage === 'Prelims' ? 'badge-yellow' : 'badge-green'}">${q.stage}</span></td>
+            <td>${topic ? topic.name : 'Unknown Topic'}</td>
+            <td style="font-size: 0.78rem;">${q.question}</td>
+            <td>
+              <button class="btn btn-sm btn-danger" onclick="deletePyq('${q.id}')">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += `</tbody></table>`;
+      container.innerHTML = html;
+    }
+
+    function renderVault() {
+      const container = document.getElementById("vault-table-container");
+
+      let html = `<table class="data-table">
+        <thead>
+          <tr>
+            <th>Topic</th>
+            <th>Single Source of Truth (SSOT) Resource (unverified)</th>
+            <th>Resource Link</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+      appState.topics.forEach(t => {
+        const res = t.resource || { name: "Pending assignment (unverified)", link: "", status: "not started" };
+        const statusBadges = {
+          "not started": "badge-locked",
+          "reading": "badge-yellow",
+          "done": "badge-green"
+        };
+
+        html += `
+          <tr>
+            <td><strong>${t.name}</strong></td>
+            <td>${res.name}</td>
+            <td>
+              ${res.link ? `<a href="${res.link}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">Open Source ↗</a>` : '<span style="color: var(--text-muted);">None</span>'}
+            </td>
+            <td><span class="badge ${statusBadges[res.status] || 'badge-locked'}">${res.status}</span></td>
+            <td>
+              <button class="btn btn-sm" onclick="editVaultResource('${t.id}')">Edit SSOT</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += `</tbody></table>`;
+      container.innerHTML = html;
+    }
+
+    function renderReadiness() {
+      const container = document.getElementById("readiness-bars-container");
+      let html = "";
+
+      appState.subjects.forEach(sub => {
+        const topics = appState.topics.filter(t => t.subjectId === sub.id);
+        const avgM = topics.length > 0 ? (topics.reduce((acc, t) => acc + t.M, 0) / topics.length) : 0;
+        const pct = Math.round(avgM * 100);
+        const color = pct < 40 ? "var(--color-red)" : (pct <= 70 ? "var(--color-yellow)" : "var(--color-green)");
+
+        html += `
+          <div style="margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+              <div>
+                <strong>${sub.name}</strong>
+                <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: 0.5rem;">(${topics.length} topics)</span>
+              </div>
+              <strong style="color: ${color};">${pct}%</strong>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: ${pct}%; background-color: ${color};"></div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function renderAllViews() {
+      renderStudyNow();
+      renderSyllabusTree();
+      renderRevisionSchedule();
+      renderRoadmap();
+      renderPyqs();
+      renderVault();
+      renderReadiness();
+    }
+
+    // Handlers
+    function handleSessionSubmit(event) {
+      event.preventDefault();
+      const topicId = document.getElementById("log-topic").value;
+      const selfRating = parseFloat(document.getElementById("log-self").value);
+      const correctVal = document.getElementById("log-correct").value;
+      const totalVal = document.getElementById("log-total").value;
+      const notes = document.getElementById("log-notes").value;
+
+      const topic = appState.topics.find(t => t.id === topicId);
+      if (!topic) return;
+
+      let newMastery = selfRating / 100;
+
+      // Weight quiz scores 70% and self-rating 30% if quiz entered
+      if (correctVal !== "" && totalVal !== "") {
+        const correct = parseFloat(correctVal);
+        const total = parseFloat(totalVal);
+        if (total > 0) {
+          const quizRatio = correct / total;
+          newMastery = (0.70 * quizRatio) + (0.30 * (selfRating / 100));
+        }
+      }
+
+      // Clamp between 0.0 and 1.0
+      topic.M = Math.min(1.0, Math.max(0.0, parseFloat(newMastery.toFixed(2))));
+      topic.lastRevised = new Date().toISOString().split("T")[0];
+      if (notes) topic.notes = notes;
+
+      appState.studyLogs.push({
+        id: "log_" + Date.now(),
+        topicId: topic.id,
+        timestamp: new Date().toISOString(),
+        selfRating,
+        quizScore: (correctVal !== "" && totalVal !== "") ? { correct: parseFloat(correctVal), total: parseFloat(totalVal) } : null,
+        resultingMastery: topic.M
+      });
+
+      saveState();
+      renderAllViews();
+
+      // Reset form fields
+      document.getElementById("log-self").value = "";
+      document.getElementById("log-correct").value = "";
+      document.getElementById("log-total").value = "";
+      document.getElementById("log-notes").value = "";
+
+      alert(`Session logged! ${topic.name} mastery updated to ${(topic.M * 100).toFixed(0)}%.`);
+    }
+
+    function quickLogTopic(topicId) {
+      switchTab("dashboard");
+      document.getElementById("log-topic").value = topicId;
+      document.getElementById("log-self").focus();
+    }
+
+    function updateStartDate(val) {
+      if (!val) return;
+      appState.startDate = val;
+      saveState();
+      renderRoadmap();
+      renderPhaseSummary();
+    }
+
+    function recomputeWeightsFromPyqs() {
+      // Calculate PYQ count per topic
+      const counts = {};
+      appState.pyqs.forEach(q => {
+        counts[q.topicId] = (counts[q.topicId] || 0) + 1;
+      });
+
+      const maxCount = Math.max(...Object.values(counts), 1);
+
+      appState.topics.forEach(t => {
+        const count = counts[t.id] || 0;
+        // Map 0 to maxCount onto weight scale 1.0 to 5.0
+        if (count > 0) {
+          t.W = parseFloat((1.0 + (4.0 * (count / maxCount))).toFixed(1));
+        }
+      });
+
+      saveState();
+      renderAllViews();
+      alert("Topic weightages (W) recomputed based on PYQ frequency distribution!");
+    }
+
+    // Modal Operations
+    function openModal(id) {
+      document.getElementById(id).classList.add("active");
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("active");
+    }
+
+    function openAddTopicModal() {
+      document.getElementById("topic-modal-title").innerText = "Add New Topic";
+      document.getElementById("modal-topic-id").value = "";
+      document.getElementById("modal-topic-name").value = "";
+      document.getElementById("modal-topic-paper").value = "Prelims GS-1 / Mains GS-1 (unverified)";
+      document.getElementById("modal-topic-w").value = "3.5";
+      document.getElementById("modal-topic-r").value = "1.0";
+      document.getElementById("modal-topic-notes").value = "";
+
+      populateSubjectAndPrereqOptions();
+      openModal("topic-modal");
+    }
+
+    function editTopic(topicId) {
+      const topic = appState.topics.find(t => t.id === topicId);
+      if (!topic) return;
+
+      document.getElementById("topic-modal-title").innerText = `Edit: ${topic.name}`;
+      document.getElementById("modal-topic-id").value = topic.id;
+      document.getElementById("modal-topic-name").value = topic.name;
+      document.getElementById("modal-topic-paper").value = topic.paper;
+      document.getElementById("modal-topic-w").value = topic.W;
+      document.getElementById("modal-topic-r").value = topic.R;
+      document.getElementById("modal-topic-notes").value = topic.notes || "";
+
+      populateSubjectAndPrereqOptions(topic.subjectId, topic.prereqId, topic.id);
+      openModal("topic-modal");
+    }
+
+    function populateSubjectAndPrereqOptions(selectedSub = null, selectedPrereq = null, excludeTopicId = null) {
+      const subSelect = document.getElementById("modal-topic-subject");
+      subSelect.innerHTML = appState.subjects.map(s => `<option value="${s.id}" ${s.id === selectedSub ? 'selected' : ''}>${s.name}</option>`).join("");
+
+      const prereqSelect = document.getElementById("modal-topic-prereq");
+      prereqSelect.innerHTML = `<option value="">None (Available immediately)</option>` + 
+        appState.topics
+          .filter(t => t.id !== excludeTopicId)
+          .map(t => `<option value="${t.id}" ${t.id === selectedPrereq ? 'selected' : ''}>${t.name}</option>`).join("");
+    }
+
+    function saveTopicModal(event) {
+      event.preventDefault();
+      const id = document.getElementById("modal-topic-id").value;
+      const subjectId = document.getElementById("modal-topic-subject").value;
+      const name = document.getElementById("modal-topic-name").value;
+      const paper = document.getElementById("modal-topic-paper").value;
+      const W = parseFloat(document.getElementById("modal-topic-w").value);
+      const R = parseFloat(document.getElementById("modal-topic-r").value);
+      const prereqId = document.getElementById("modal-topic-prereq").value || null;
+      const notes = document.getElementById("modal-topic-notes").value;
+
+      if (id) {
+        // Edit existing
+        const topic = appState.topics.find(t => t.id === id);
+        if (topic) {
+          topic.subjectId = subjectId;
+          topic.name = name;
+          topic.paper = paper;
+          topic.W = W;
+          topic.R = R;
+          topic.prereqId = prereqId;
+          topic.notes = notes;
+        }
+      } else {
+        // Create new
+        appState.topics.push({
+          id: "t_custom_" + Date.now(),
+          subjectId,
+          name,
+          paper,
+          W,
+          R,
+          M: 0.0,
+          lastRevised: null,
+          prereqId,
+          notes,
+          resource: { name: "Custom Reference (unverified)", link: "", status: "not started" }
+        });
+      }
+
+      saveState();
+      closeModal("topic-modal");
+      renderAllViews();
+    }
+
+    function openAddPyqModal() {
+      document.getElementById("pyq-year").value = new Date().getFullYear();
+      document.getElementById("pyq-question").value = "";
+      const topicSelect = document.getElementById("pyq-topic-select");
+      topicSelect.innerHTML = appState.topics.map(t => `<option value="${t.id}">${t.name} (${t.paper})</option>`).join("");
+      openModal("pyq-modal");
+    }
+
+    function savePyqModal(event) {
+      event.preventDefault();
+      const year = parseInt(document.getElementById("pyq-year").value, 10);
+      const topicId = document.getElementById("pyq-topic-select").value;
+      const question = document.getElementById("pyq-question").value;
+      const stage = document.getElementById("pyq-stage").value;
+
+      appState.pyqs.push({
+        id: "pyq_" + Date.now(),
+        year,
+        topicId,
+        question,
+        stage
+      });
+
+      saveState();
+      closeModal("pyq-modal");
+      renderPyqs();
+    }
+
+    function deletePyq(pyqId) {
+      appState.pyqs = appState.pyqs.filter(q => q.id !== pyqId);
+      saveState();
+      renderPyqs();
+    }
+
+    function editVaultResource(topicId) {
+      const topic = appState.topics.find(t => t.id === topicId);
+      if (!topic) return;
+
+      document.getElementById("vault-topic-id").value = topic.id;
+      document.getElementById("vault-topic-title").innerText = `Topic: ${topic.name}`;
+      document.getElementById("vault-resource-name").value = topic.resource?.name || "";
+      document.getElementById("vault-link").value = topic.resource?.link || "";
+      document.getElementById("vault-status").value = topic.resource?.status || "not started";
+
+      openModal("vault-modal");
+    }
+
+    function saveVaultModal(event) {
+      event.preventDefault();
+      const topicId = document.getElementById("vault-topic-id").value;
+      const name = document.getElementById("vault-resource-name").value;
+      const link = document.getElementById("vault-link").value;
+      const status = document.getElementById("vault-status").value;
+
+      const topic = appState.topics.find(t => t.id === topicId);
+      if (topic) {
+        topic.resource = { name, link, status };
+        saveState();
+        closeModal("vault-modal");
+        renderVault();
+      }
+    }
+
+    // Initialize Application
+    document.addEventListener("DOMContentLoaded", () => {
+      loadState();
+      renderAllViews();
+    });
+  </script>
+</body>
+</html>
